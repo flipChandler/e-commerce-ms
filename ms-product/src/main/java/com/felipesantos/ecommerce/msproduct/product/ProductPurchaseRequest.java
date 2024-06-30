@@ -2,9 +2,8 @@ package com.felipesantos.ecommerce.msproduct.product;
 
 import jakarta.validation.constraints.NotNull;
 
-public record ProductPurchaseRequest(
-        @NotNull(message = "Product is mandatory")
-        Integer productId,
-        @NotNull(message = "Quantity is mandatory")
-        double quantity) {
+public record ProductPurchaseRequest(@NotNull(message = "Product is mandatory")
+                                     Integer productId,
+                                     @NotNull(message = "Quantity is mandatory")
+                                     double quantity) {
 }

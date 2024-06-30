@@ -1,9 +1,9 @@
 spring:
-  config:
-    import: optional:configserver:http://localhost:8888  # if not find the configuration of ther ms, it will run in 8080 port
-
   application:
     name: discovery-service
+
+  config:
+    import: optional:configserver:http://localhost:8888  # if not find the configuration of ther ms, it will run in 8080 port
 
 eureka:
   instance:
