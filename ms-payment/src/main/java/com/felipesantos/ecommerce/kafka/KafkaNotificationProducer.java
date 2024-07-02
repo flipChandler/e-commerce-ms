@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class KafkaNotificationProducer {
 
     @Value("${kafka.topic.payment-topic}")
-    private String topic;
+    private final String topic;
 
     private final KafkaTemplate<String, PaymentNotificationRequest> kafkaTemplate;
 
