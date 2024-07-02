@@ -1,6 +1,5 @@
-package com.felipesantos.ecommerce.order;
+package com.felipesantos.ecommerce.payment;
 
-import com.felipesantos.ecommerce.orderline.OrderLine;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -9,33 +8,26 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
 
 @Getter
 @Setter
 @Builder
 @Entity
-@Table(name = "customer_order")
+@Table(name = "payment")
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Order {
+public class Payment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ORDER")
-    @SequenceGenerator(name = "SEQ_ORDER", sequenceName = "SEQ_ORDER", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PAYMENT")
+    @SequenceGenerator(name = "SEQ_PAYMENT", sequenceName = "SEQ_PAYMENT", allocationSize = 1)
     private Integer id;
-    private String reference;
-    private BigDecimal totalAmount;
+    private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
-    private String customerId;
-
-    @OneToMany(mappedBy = "order")
-    private List<OrderLine> orderLines = new ArrayList<>();
+    private Integer orderId;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)

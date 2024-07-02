@@ -2,6 +2,8 @@ package com.felipesantos.ecommerce.order;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class OrderMapper {
 
@@ -13,5 +15,14 @@ public class OrderMapper {
                 .totalAmount(orderRequest.amount())
                 .paymentMethod(orderRequest.paymentMethod())
                 .build();
+    }
+
+    public OrderResponse fromOrder(Order order) {
+        return new OrderResponse(
+            order.getId(),
+            order.getReference(),
+            order.getTotalAmount(),
+            order.getPaymentMethod(),
+            order.getCustomerId());
     }
 }
