@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handle(CustomerNotFoundException exception) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body(exception.getMsg());
+                .body(exception.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

@@ -1,0 +1,36 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+
+      routes:
+        # customer-service receives requests from outside the private network
+        - id: customer-service
+          uri: lb:http://CUSTOMER-SERVICE
+          predicates:
+            - Path=/api/v1/customers/**
+        # order-service receives requests from outside the private network
+        - id: order-service
+          uri: lb:http://ORDER-SERVICE
+          predicates:
+              - Path=/api/v1/orders/**
+        # order-lines-service receives requests from outside the private network
+        - id: order-lines-service
+          uri: lb:http://ORDER-SERVICE
+          predicates:
+            - Path=/api/v1/order-lines/**
+        # product-service receives requests from outside the private network
+        - id: product-service
+          uri: lb:http://PRODUCT-SERVICE
+          predicates:
+            - Path=/api/v1/products/**
+        # payment-service receives requests from outside the private network
+        - id: payment-service
+          uri: lb:http://PAYMENT-SERVICE
+          predicates:
+            - Path=/api/v1/payments/**  # todo: configure the security to not call this endpoint for outside the private network
+
+server:
+  port: 8222

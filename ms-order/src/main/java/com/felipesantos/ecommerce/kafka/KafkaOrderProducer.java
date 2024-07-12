@@ -17,12 +17,12 @@ public class KafkaOrderProducer {
     @Value("${kafka.topic.order-topic}")
     private String topic;
 
-    private final KafkaTemplate<String, OrderConfirmationRequest> kafkaTemplate;
+    private final KafkaTemplate<String, OrderConfirmation> kafkaTemplate;
 
-    public void sendOrderConfirmation(OrderConfirmationRequest orderConfirmationRequest) {
+    public void sendOrderConfirmation(OrderConfirmation orderConfirmation) {
         log.info("Sending order confirmation...");
-        Message<OrderConfirmationRequest> message = MessageBuilder
-                .withPayload(orderConfirmationRequest)
+        Message<OrderConfirmation> message = MessageBuilder
+                .withPayload(orderConfirmation)
                 .setHeader(KafkaHeaders.TOPIC, topic)
                 .build();
         kafkaTemplate.send(message);

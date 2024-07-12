@@ -1,7 +1,7 @@
 package com.felipesantos.ecommerce.order;
 
 import com.felipesantos.ecommerce.customer.CustomerService;
-import com.felipesantos.ecommerce.kafka.OrderConfirmationRequest;
+import com.felipesantos.ecommerce.kafka.OrderConfirmation;
 import com.felipesantos.ecommerce.kafka.KafkaOrderProducer;
 import com.felipesantos.ecommerce.orderline.OrderLineRequest;
 import com.felipesantos.ecommerce.orderline.OrderLineService;
@@ -65,7 +65,7 @@ public class OrderService {
 
         // send order confirmation --> ms-notification (kafka)
         kafkaOrderProducer.sendOrderConfirmation(
-                new OrderConfirmationRequest(
+                new OrderConfirmation(
                         orderRequest.reference(),
                         orderRequest.amount(),
                         orderRequest.paymentMethod(),

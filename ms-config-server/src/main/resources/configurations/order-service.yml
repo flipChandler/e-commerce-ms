@@ -6,7 +6,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
@@ -16,7 +16,7 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        spring.json.type.mapping: orderConfirmation:com.felipesantos.ecommerce.kafka.OrderConfirmationRequest
+        spring.json.type.mapping: orderConfirmation:com.felipesantos.ecommerce.kafka.OrderConfirmation
 
 server:
   port: 8070

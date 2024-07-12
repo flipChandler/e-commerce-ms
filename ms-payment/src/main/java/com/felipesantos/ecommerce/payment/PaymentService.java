@@ -1,7 +1,7 @@
 package com.felipesantos.ecommerce.payment;
 
 import com.felipesantos.ecommerce.kafka.KafkaNotificationProducer;
-import com.felipesantos.ecommerce.kafka.PaymentNotificationRequest;
+import com.felipesantos.ecommerce.kafka.PaymentNotification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +20,7 @@ public class PaymentService {
         var payment = paymentRepository.save(paymentMapper.toPayment(paymentRequest));
 
         kafkaNotificationProducer.sendNotification(
-                new PaymentNotificationRequest(
+                new PaymentNotification(
                         paymentRequest.orderReference(),
                         paymentRequest.amount(),
                         paymentRequest.paymentMethod(),
