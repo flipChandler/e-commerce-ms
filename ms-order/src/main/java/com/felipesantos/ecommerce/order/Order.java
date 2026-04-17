@@ -27,11 +27,14 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ORDER")
     @SequenceGenerator(name = "SEQ_ORDER", sequenceName = "SEQ_ORDER", allocationSize = 1)
     private Integer id;
+
     private String reference;
+
     private BigDecimal totalAmount;
 
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
+
     private String customerId;
 
     @OneToMany(mappedBy = "order")

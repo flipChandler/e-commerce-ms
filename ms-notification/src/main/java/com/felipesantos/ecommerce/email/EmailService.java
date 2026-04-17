@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
@@ -25,10 +26,11 @@ public class EmailService {
     private final JavaMailSender mailSender;
     private final SpringTemplateEngine templateEngine;
 
+    @Async
     public void sendPaymentSuccessEmail(String destinationEmail,
-                                        String customerName,
-                                        BigDecimal amount,
-                                        String orderReference) throws MessagingException {
+                          String customerName,
+                          BigDecimal amount,
+                          String orderReference) throws MessagingException {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(
                         mimeMessage,
@@ -59,6 +61,7 @@ public class EmailService {
         }
     }
 
+    @Async
     public void sendOrderConfirmationEmail(String destinationEmail,
                                            String customerName,
                                            BigDecimal amount,

@@ -17,7 +17,7 @@ public class OrderLineService {
 
     @Transactional
     public Integer saveOrderLine(OrderLineRequest orderLineRequest) {
-        return orderLineRepository.save(orderLineMapper.toOrderLine(orderLineRequest)).getId() ;
+        return orderLineRepository.save(orderLineMapper.toOrderLine(orderLineRequest)).getId();
     }
 
     public List<OrderLineResponse> findAllByOrderId(Integer orderId) {

@@ -4,33 +4,38 @@ spring:
       discovery:
         locator:
           enabled: true
-
       routes:
         # customer-service receives requests from outside the private network
         - id: customer-service
+          # application.name of the customer-service in the Eureka Server
           uri: lb:http://CUSTOMER-SERVICE
           predicates:
             - Path=/api/v1/customers/**
         # order-service receives requests from outside the private network
         - id: order-service
+          # application.name of the order-service in the Eureka Server
           uri: lb:http://ORDER-SERVICE
           predicates:
-              - Path=/api/v1/orders/**
+            - Path=/api/v1/orders/**
         # order-lines-service receives requests from outside the private network
         - id: order-lines-service
+          # application.name of the order-service in the Eureka Server
           uri: lb:http://ORDER-SERVICE
           predicates:
             - Path=/api/v1/order-lines/**
         # product-service receives requests from outside the private network
         - id: product-service
+          # application.name of the product-service in the Eureka Server
           uri: lb:http://PRODUCT-SERVICE
           predicates:
             - Path=/api/v1/products/**
         # payment-service receives requests from outside the private network
         - id: payment-service
+          # application.name of the payment-service in the Eureka Server
           uri: lb:http://PAYMENT-SERVICE
           predicates:
-            - Path=/api/v1/payments/**  # todo: configure the security to not call this endpoint for outside the private network
+            # todo: configure the security to not call this endpoint for outside the private network
+            - Path=/api/v1/payments/**
 
 server:
   port: 8222

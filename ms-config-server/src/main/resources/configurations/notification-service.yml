@@ -5,7 +5,7 @@ spring:
       password: root@1234
       host: localhost
       port: 27017
-      database: customerdb
+      database: notificationdb
       authentication-database: admin
 
   kafka:

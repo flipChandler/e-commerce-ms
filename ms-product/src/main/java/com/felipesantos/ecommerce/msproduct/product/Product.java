@@ -19,9 +19,13 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PRODUCT")
     @SequenceGenerator(name = "SEQ_PRODUCT", sequenceName = "SEQ_PRODUCT", allocationSize = 1)
     private Integer id;
+
     private String name;
+
     private String description;
+
     private double availableQuantity;
+
     private BigDecimal price;
 
     @ManyToOne

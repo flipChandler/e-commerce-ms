@@ -23,10 +23,12 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PAYMENT")
     @SequenceGenerator(name = "SEQ_PAYMENT", sequenceName = "SEQ_PAYMENT", allocationSize = 1)
     private Integer id;
+
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
+
     private Integer orderId;
 
     @CreatedDate
